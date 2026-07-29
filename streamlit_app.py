@@ -1,7 +1,7 @@
 # Import python packages
 import streamlit as st
 import os
-from snowflake.snowpark.context import get_active_session
+#from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col, when_matched
 
 # Write directly to the app
@@ -11,7 +11,8 @@ st.write(
   """
 )
 
-session = get_active_session()
+cnx = st.connection('snowflake')
+session = cnx.session() #get_active_session()
 my_dataframe = session.table('smoothies.public.orders').filter(col('order_filled') == 0).collect()
 current_dataset = session.table('smoothies.public.orders')
 if my_dataframe:
