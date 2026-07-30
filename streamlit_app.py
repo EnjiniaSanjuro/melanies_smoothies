@@ -14,6 +14,8 @@ st.write(
 
 smoothiefroot_response = requests.get('https://www.smoothiefroot.com/api/fruit/watermelon')  
 #st.text(smoothiefroot_response)
+st.write("Database:", session.get_current_database())
+st.write("Schema:", session.get_current_schema())
 sf_sf = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
 cnx = st.connection('snowflake')
