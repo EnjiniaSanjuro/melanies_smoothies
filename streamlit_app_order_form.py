@@ -20,8 +20,8 @@ session.use_schema("PUBLIC")
 my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"), col("SEARCH_ON"))
 pd_dataframe = my_dataframe.to_pandas()
 st.dataframe(pd_dataframe)
-st.stop()
 fruits_list = st.multiselect('Make you choice below:', my_dataframe)
+st.stop()
 
 if fruits_list:
     #fruits_string = ''
