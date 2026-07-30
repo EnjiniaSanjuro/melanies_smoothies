@@ -4,6 +4,7 @@ import os
 from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
 import requests
+import pandas as pd
 
 # Write directly to the app
 st.title(f"Custom Smoothie Order Form :cup_with_straw:")
@@ -18,6 +19,7 @@ session.use_database("SMOOTHIES")
 session.use_schema("PUBLIC")
 my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"), col("SEARCH_ON"))
 #st.stop()
+pd_dataframe = pd.dataframe(my_dataframe)
 fruits_list = st.multiselect('Make you choice below:', my_dataframe)
 
 if fruits_list:
