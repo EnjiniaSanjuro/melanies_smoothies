@@ -19,10 +19,10 @@ session.use_schema("PUBLIC")
 my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"))
 fruits_list = st.multiselect('Make you choice below:', my_dataframe)
 if fruits_list:
-    fruits_string = ''
+    #fruits_string = ''
     for fruit in fruits_list:
-        fruits_string += fruit + ' '
-        st.subheader(fruits_string + 'Nutrition information')
+        #fruits_string += fruit + ' '
+        st.subheader(fruit + ' Nutrition information')
         url = 'https://my.smoothiefroot.com/api/fruit/' + fruit.lower()
         #st.write(url)
         smoothiefroot_response = requests.get(url)
