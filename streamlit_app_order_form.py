@@ -21,17 +21,17 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT
 pd_dataframe = my_dataframe.to_pandas()
 st.dataframe(pd_dataframe)
 fruits_list = st.multiselect('Make you choice below:', my_dataframe)
-st.stop()
+#st.stop()
 
 if fruits_list:
     #fruits_string = ''
     for fruit in fruits_list:
         #fruits_string += fruit + ' '
         st.subheader(fruit + ' Nutrition information')
-        url = 'https://my.smoothiefroot.com/api/fruit/' + fruit.lower()
-        #st.write(url)
-        smoothiefroot_response = requests.get(url)
-        sf_sf = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+        url = 'https://my.smoothiefroot.com/api/fruit/' + pd_dataframe[pd_dataframe['FRUIT_NAME'] == fruit].iloc[0, 1]
+        st.write(url)
+        #smoothiefroot_response = requests.get(url)
+        #sf_sf = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
     if len(fruits_list) < 6:
         name_on_order = st.text_input('Your Name:')
         if name_on_order:
