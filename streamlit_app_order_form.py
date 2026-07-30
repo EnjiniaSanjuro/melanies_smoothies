@@ -19,6 +19,7 @@ session.use_schema("PUBLIC")
 my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"))
 fruits_list = st.multiselect('Make you choice below:', my_dataframe)
 if fruits_list:
+    fruits_string = ''
     for fruit in fruits_list:
         fruits_string += fruit + ' '
         st.subheader(fruits_string + 'Nutrition information')
