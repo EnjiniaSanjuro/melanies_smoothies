@@ -30,7 +30,9 @@ if my_dataframe:
                                   (current_dataset['ORDER_UID'] == edited_dataset['ORDER_UID']),
                                   [when_matched().update({'ORDER_FILLED': edited_dataset['ORDER_FILLED']})])
             st.success('Your orders has been updated.', icon="✅")
-        except:
-            st.write('Something went wrong, try again.')
+        except Exception as e:
+            st.exception(e)
+        #except:
+            #st.write('Something went wrong, try again.')
 else:
     st.success('There are no pending orders.')
