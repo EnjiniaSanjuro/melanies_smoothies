@@ -35,8 +35,8 @@ if fruits_list:
     if len(fruits_list) < 6:
         name_on_order = st.text_input('Your Name:')
         if name_on_order:
-            order_line = ''.join([c + ', ' for c in fruits_list])
-            sql_insert = """insert into smoothies.public.orders(ingredients, name_on_order) values ('""" + order_line[:-2] + """', '""" + name_on_order + """')"""
+            order_line = ''.join([c + ' ' for c in fruits_list])
+            sql_insert = """insert into smoothies.public.orders(ingredients, name_on_order) values ('""" + order_line + """', '""" + name_on_order + """')"""
             time_to_insert = st.button('Submit Order')
             if time_to_insert:
                 result = session.sql(sql_insert).collect()
