@@ -12,10 +12,6 @@ st.write(
   """
 )
 
-smoothiefroot_response = requests.get('https://www.smoothiefroot.com/api/fruit/watermelon')  
-#st.text(smoothiefroot_response)
-sf_sf = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-
 cnx = st.connection('snowflake')
 session = cnx.session() #get_active_session()
 session.use_database("SMOOTHIES")
