@@ -12,8 +12,8 @@ st.write(
   """
 )
 
-#smoothiefroot_response = requests.get("[https://my.smoothiefroot.com/api/fruit/watermelon](https://my.smoothiefroot.com/api/fruit/watermelon)")  
-st.text('watermelon')#'smoothiefroot_response)
+smoothiefroot_response = requests.get('https://www.smoothiefroot.com/api/fruit/watermelon')  
+st.text(smoothiefroot_response)
 
 cnx = st.connection('snowflake')
 session = cnx.session() #get_active_session()
