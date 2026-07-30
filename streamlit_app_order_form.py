@@ -12,7 +12,10 @@ st.write(
   """
 )
 
-session = get_active_session()
+cnx = st.connection('snowflake')
+session = cnx.session()
+session.use_database("SMOOTHIES")
+session.use_schema("PUBLIC")
 my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"))
 fruits_list = st.multiselect('Make you choice below:', my_dataframe)
 if fruits_list:
