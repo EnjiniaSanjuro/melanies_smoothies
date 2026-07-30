@@ -14,14 +14,14 @@ st.write(
 
 smoothiefroot_response = requests.get('https://www.smoothiefroot.com/api/fruit/watermelon')  
 #st.text(smoothiefroot_response)
-st.write("Database:", session.get_current_database())
-st.write("Schema:", session.get_current_schema())
 sf_sf = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
 cnx = st.connection('snowflake')
 session = cnx.session() #get_active_session()
 my_dataframe = session.table('smoothies.public.orders').filter(col('order_filled') == 0).collect()
 current_dataset = session.table('smoothies.public.orders')
+st.write("Database:", session.get_current_database())
+st.write("Schema:", session.get_current_schema())
 if my_dataframe:
     editable_df = st.data_editor(my_dataframe)
     submitted = st.button('Submit')
