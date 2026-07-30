@@ -18,8 +18,9 @@ session = cnx.session()
 session.use_database("SMOOTHIES")
 session.use_schema("PUBLIC")
 my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"), col("SEARCH_ON"))
-#st.stop()
-pd_dataframe = pd.dataframe(my_dataframe)
+pd_dataframe = my_dataframe.to_pandas()
+st.dataframe(pd_dataframe)
+st.stop()
 fruits_list = st.multiselect('Make you choice below:', my_dataframe)
 
 if fruits_list:
