@@ -18,6 +18,8 @@ sf_sf = st.dataframe(data=smoothiefroot_response.json(), use_container_width=Tru
 
 cnx = st.connection('snowflake')
 session = cnx.session() #get_active_session()
+session.use_database("SMOOTHIES")
+session.use_schema("PUBLIC")
 my_dataframe = session.table('smoothies.public.orders').filter(col('order_filled') == 0).collect()
 current_dataset = session.table('smoothies.public.orders')
 st.write("Database:", session.get_current_database())
