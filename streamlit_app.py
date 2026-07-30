@@ -22,8 +22,8 @@ session.use_database("SMOOTHIES")
 session.use_schema("PUBLIC")
 my_dataframe = session.table('smoothies.public.orders').filter(col('order_filled') == 0).collect()
 current_dataset = session.table('smoothies.public.orders')
-st.write("Database:", session.get_current_database())
-st.write("Schema:", session.get_current_schema())
+#st.write("Database:", session.get_current_database())
+#st.write("Schema:", session.get_current_schema())
 if my_dataframe:
     editable_df = st.data_editor(my_dataframe)
     submitted = st.button('Submit')
@@ -34,9 +34,9 @@ if my_dataframe:
                                   (current_dataset['ORDER_UID'] == edited_dataset['ORDER_UID']),
                                   [when_matched().update({'ORDER_FILLED': edited_dataset['ORDER_FILLED']})])
             st.success('Your orders has been updated.', icon="✅")
-        except Exception as e:
-            st.exception(e)
-        #except:
-            #st.write('Something went wrong, try again.')
+        #except Exception as e:
+            #st.exception(e)
+        except:
+            st.write('Something went wrong, try again.')
 else:
     st.success('There are no pending orders.')
